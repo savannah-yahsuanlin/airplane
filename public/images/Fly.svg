@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="125" height="24" viewBox="0 0 125 24">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 37px;
+        fill: #fff;
+        font-family: SignPainter-HouseScriptSemibold, SignPainter;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+  <image id="Background" width="125" height="24" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAYCAYAAADXufLMAAAAWUlEQVRoge3RQRHAIADAsDFDiMYhBpiL8WiioHcdc+3zkPLeDuB/pgeZHmR6kOlBpgeZHmR6kOlBpgeZHmR6kOlBpgeZHmR6kOlBpgeZHmR6kOlBpgeZHvQBTLMC8xLxUZsAAAAASUVORK5CYII="/>
+  <text id="F" class="cls-1" x="28.285" y="23.807">F</text>
+  <text id="L" class="cls-1" x="59.285" y="23.807">L</text>
+  <text id="Y" class="cls-1" x="87.285" y="23.807">Y</text>
+</svg>

@@ -1,18 +1,30 @@
-const Sequelize = require("sequelize");
-const pkg = require("../../package.json");
-const pkgName = pkg.name;
-const config = {
-  logging: false,
-};
+const path = require("path");
+const express = require("express");
+const morgan = require("morgan");
 
-if (process.env.LOGGING === "true") delete config.logging;
+const app = express();
 
-if (process.env.DATABASE_URL) {
-  config.dialectOptions = {
-    ssl: {},
-  };
-}
+app.use(morgan("dev"));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "..", "public")));
 
-const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://localhost/${pkgName}`
-);
+//route
+app.use("/api", require("./api"));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public/index.html"));
+});
+
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public/index.html"));
+});
+
+app.use((error, req, res, next) => {
+	console.error(error)
+	console.error(error.stack)
+	res.status(error.status || 500).send(error.message || "Internal server error")
+})
+
+module.exports = app

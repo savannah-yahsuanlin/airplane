@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 -1px 4px 0 rgba(25, 32, 36, 0.4), 0 3px 6px 0 rgba(25, 32, 35, 0.16);
+}
+.header .fly {
+  width: 80px;
+  margin: 19px auto 19px 16px;
+}
+
+main {
+  margin: 0;
+  padding: 50px;
+  background-color: #f9fafb;
+}
+main h1 {
+  font-size: 44px;
+  font-weight: 900;
+  margin-bottom: 73px;
+}
+main .airplaneLogo {
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 18px;
+}
+main .airplaneLogo img {
+  width: 25px;
+  height: 25px;
+}
+main .filter {
+  font-weight: bold;
+  color: #192024;
+  font-size: 15px;
+}
+main form {
+  display: flex;
+  align-items: center;
+  margin: 23px auto 56px;
+  color: #192024;
+  font-size: 14px;
+}
+main input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-color: #fff;
+}
+main label {
+  font-size: 14px;
+  margin-right: 24px;
+}
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  gap: 16px;
+}
+.boxes .box {
+  width: 300px;
+  height: 240px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 -1px 4px 0 rgba(25, 32, 36, 0.4), 0 3px 6px 0 rgba(25, 32, 35, 0.16);
+  cursor: pointer;
+}
+
+.content {
+  max-width: 180px;
+  line-height: 1.2;
+}
+.content-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #192024;
+}
+.content .site {
+  color: #5a6872;
+}
+
+@media (max-width: 1024px) {
+  .boxes {
+    max-width: 1200px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

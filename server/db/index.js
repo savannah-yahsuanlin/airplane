@@ -1,4 +1,4 @@
-const {Sequelize, STRING, BOOLEAN, INTEGER, DECIMAL} = require("sequelize");
+const {Sequelize, STRING, BOOLEAN, INTEGER, DECIMAL, ENUM} = require("sequelize");
 const pkg = require("../../package.json");
 const pkgName = pkg.name;
 
@@ -29,7 +29,7 @@ const Product = db.define("product", {
   },
 
   alliance: {
-    type: STRING,
+    type: ENUM(["OW", "SA", "ST"]),
     allowNull: true,
   },
 

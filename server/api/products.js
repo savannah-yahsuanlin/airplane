@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Product } = require("../db");
-const { Op } = require("sequelize");
+const Sequelize = require('sequelize')
+const {Op} = Sequelize
 
 //get all products
 router.get("/", async (req, res, next) => {
@@ -12,13 +13,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/filter", async (req, res, next) => {
+router.get("/:alliance", async (req, res, next) => {
   try {
     const products = await Product.findAll({
       where: {
-        alliance: {
-          [Op.or]: ["OW", "SA", "ST"],
-        },
+        alliance: req.params.alliance
       },
     });
     res.json(products);
@@ -26,5 +25,21 @@ router.get("/filter", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/:search', async(req, res, next) => {
+	const {term} = req.query
+	try {
+		const product = await Product.findAll({
+			where: {
+				name: {
+					[Op.like] : '%' + term + '%'
+				}
+			}
+		})
+		res.json(product)
+	} catch (error) {
+		next(error);
+	}
+})
 
 module.exports = router;

@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { loadProducts, filterProducts, searchProducts} from "./store";
 
-import { loadProducts, filterProducts } from "./store";
 
 class Routes extends Component {
   constructor() {
     super();
-    this.state = {
-      filterValue: "",
-      ow: false,
-      sa: false,
-      st: false,
-    };
-    this.filter = this.filter.bind(this);
+    this.onChange = this.onChange.bind(this);
+		this.handleSearch = this.handleSearch.bind(this)
   }
 
   componentDidMount() {
@@ -20,19 +15,25 @@ class Routes extends Component {
     this.props.filterProducts();
   }
 
-  filter() {
-    console.log("filter");
-  }
+  onChange = async (e) => {
+    const alliance = e.target.value;
+    const checked = e.target.checked;
+		this.props.filterProducts(alliance, checked)
+  };
 
-  onChange(ev) {
-    const change = {};
-    change[ev.target.check] = ev.target.checked;
-  }
+	handleSearch(e) {
+		const searchName = e.target.value
+		const dataSearch = products.filter(product => {
+			if(product.name) {
+				return product.name.toLowerCase().includes(searchName.toLowerCase())
+			}
+		})
+		this.props.searchProducts(dataSearch)
+	}
 
   render() {
     const { products } = this.props;
-    const { filterValue } = this.state;
-    const { filter, onChange } = this;
+    const { onChange, handleSearch } = this;
     return (
       <div>
         <div className="header">
@@ -41,16 +42,19 @@ class Routes extends Component {
         <main>
           <h1>Airlines</h1>
           <p className="filter">Filter by Alliances</p>
-          <form value={filterValue} onChange={filter}>
-            <input type="checkbox" onChange={onChange} name="ow" />
-            <label>Oneworld</label>
-            <input type="checkbox" onChange={onChange} name="st" />
+          <form>
+            <input type="checkbox" onChange={onChange} name="ow" value='OW'/>
+            <label>One World</label>
+            <input type="checkbox" onChange={onChange} name="st" value='ST'/>
             <label>Sky Team</label>
-            <input type="checkbox" onChange={onChange} name="sa" />
+            <input type="checkbox" onChange={onChange} name="sa" value='SA'/>
             <label>Star Alliance</label>
           </form>
+					<form>
+						<input type='text' name="search" onChange={handleSearch} placeholder="search airplane"/>
+					</form>
           <ul className="boxes">
-            {products.map((product) => {
+            {[ ...new Set(products.map((product) => {
               return (
                 <div className="box" key={product.id}>
                   <div className="airplaneLogo">
@@ -66,7 +70,8 @@ class Routes extends Component {
                   </div>
                 </div>
               );
-            })}
+						}) 
+						)]}
           </ul>
         </main>
       </div>
@@ -79,14 +84,18 @@ const mapState = ({ products }) => {
     products,
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     loadProducts: () => {
       dispatch(loadProducts());
     },
-    filterProducts: () => {
-      dispatch(filterProducts());
-    },
+    filterProducts: (alliance, checked) => {
+      dispatch(filterProducts(alliance, checked))
+		},
+		searchProducts: (search) => {
+			dispatch(searchProducts(search))
+		}
   };
 };
 

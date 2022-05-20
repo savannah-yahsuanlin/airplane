@@ -36,6 +36,9 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "bcrypt": "^5.0.1",
     "chalk": "^5.0.1",
     "dotenv": "^16.0.1",
@@ -49,6 +52,7 @@
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.51.0",
     "sass-loader": "^12.6.0",
-    "sequelize": "^6.19.0"
+    "sequelize": "^6.19.0",
+    "ws": "^8.6.0"
   }
 }

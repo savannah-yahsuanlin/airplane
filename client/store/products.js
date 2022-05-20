@@ -34,15 +34,15 @@ export const filterProducts = (alliance, checked) => {
   };
 };
 
-export const searchProducts = (query) => {
-  return async (dispatch) => {
-    const product = (await axios.get(`/api/products/${query}`)).data;
-    dispatch({
-      type: SEARCH_PRODUCTS,
-      product,
-    });
-  };
-};
+//export const searchProducts = (query) => {
+//  return async (dispatch) => {
+//    const product = (await axios.get(`/api/products/${query}`)).data;
+//    dispatch({
+//      type: SEARCH_PRODUCTS,
+//      product,
+//    });
+//  };
+//};
 
 // REDUCER
 export default function(state = [], action) {
@@ -50,8 +50,6 @@ export default function(state = [], action) {
     case LOAD_PRODUCTS:
       return action.products;
     case FILTER_PRODUCTS:
-      return action.products;
-    case SEARCH_PRODUCTS:
       return action.products;
     default:
       return state;

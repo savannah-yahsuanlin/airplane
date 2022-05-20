@@ -40,8 +40,8 @@ class Airlines extends Component {
         !product.name.toLowerCase() || product.name.toLowerCase() === value
       );
     });
-    console.log(product);
-    this.props.loadProducts(product);
+    this.setState(product)
+    //this.props.loadProducts(product);
   };
 
   render() {

@@ -52,8 +52,7 @@ async function seed() {
 			name: "ANA",
 			logoURL: url + "/rimg/provider-logos/airlines/v/EH.png?crop=false&width=108&height=92&fallback=default1.png&_v=62b4b9a45bf8b49cc47ef65707139fdf",
 			price: 33,
-			seat: 3,
-			isHotDeal: true,
+			seat: 3
 		}),
 
 		Product.create({

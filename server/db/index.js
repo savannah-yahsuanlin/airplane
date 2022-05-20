@@ -1,4 +1,11 @@
-const {Sequelize, STRING, BOOLEAN, INTEGER, DECIMAL, ENUM} = require("sequelize");
+const {
+  Sequelize,
+  STRING,
+  BOOLEAN,
+  INTEGER,
+  DECIMAL,
+  ENUM,
+} = require("sequelize");
 const pkg = require("../../package.json");
 const pkgName = pkg.name;
 
@@ -10,7 +17,6 @@ const db = new Sequelize(
   process.env.DATABASE_URL || `postgres://localhost/${pkgName}`,
   config
 );
-
 
 if (process.env.LOGGING === "true") delete config.logging;
 
@@ -72,20 +78,17 @@ const Product = db.define("product", {
   isEditorChoice: {
     type: BOOLEAN,
     defaultValue: false,
-  }
-
+  },
 });
 
+const WishList = db.define("wishlist", {
+  list: {
+    type: INTEGER,
+    defaultValue: 0,
+  },
+});
 
-const WishList = db.define('wishlist', {
-	list: {
-		type: INTEGER,
-		defaultValue: 0
-	}
-})
-
-
-Product.hasMany(WishList)
+Product.hasMany(WishList);
 
 module.exports = {
   db,

@@ -1,20 +1,19 @@
-import React from 'react'
+import React from "react";
 import { connect } from "react-redux";
 
 export const Airlines = (props) => {
-	const { products } = props
-	return (
-		<div>
-			
-			<hr/>
-		</div>
-	)
-}
+  const { products } = props;
+  return (
+    <div>
+      <hr />
+    </div>
+  );
+};
 
 const mapState = (state) => {
-	return {
-		products: state.products
-	}
-}
+  return {
+    products: state.products,
+  };
+};
 
-export default connect(mapState)(Airlines)
+export default connect(mapState)(Airlines);

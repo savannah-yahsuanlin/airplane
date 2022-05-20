@@ -25,6 +25,7 @@ body, html {
 	margin: 0;
 	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
+	background-color: #f9fafb;
 }
 
 .header {
@@ -43,7 +44,6 @@ body, html {
 main {
 	margin: 0;
 	padding: 50px;
-	background-color: #f9fafb;
 
 	h1 {
 		font-size: 44px;
@@ -126,6 +126,42 @@ main {
     .site {
         color: $gray;
     }
+}
+
+.badgeNew {
+	display: block;
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	background: rgba(255, 0, 0, 0.255);
+	padding: 2px 10px;
+	color: red;
+	border-radius: 5px;
+	font-size: 12px;
+}
+
+.badgeHotDeal {
+	display: block;
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	background: rgba(255, 0, 89, 0.255);
+	padding: 2px 10px;
+	color: rgb(255, 0, 89);
+	border-radius: 5px;
+	font-size: 12px;
+}
+
+.badgeEditorChoice {
+	display: block;
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	background: rgba(0, 208, 255, 0.255);
+	padding: 2px 10px;
+	color: rgb(0, 8, 255);
+	border-radius: 5px;
+	font-size: 12px;
 }
 
 @media (max-width: 1024px) {

@@ -1,5 +1,7 @@
 import React from "react";
 import Routes from "./Routes";
+import Home from "./components/Home";
+
 
 
 const App = () => {
@@ -14,4 +16,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default (App);

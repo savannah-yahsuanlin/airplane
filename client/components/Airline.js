@@ -14,7 +14,8 @@ class Airline extends Component {
       console.log("Congrats! Your browser supports Web Share API");
       navigator
         .share({
-					text: 'Travel with Fly and Savannah',
+					subject: 'Fly with Fly',
+					text: 'This is hot deal and do not miss it!!' + 'Travel with Fly and Savannah',
 					url: `fly.com/${this.props.product.id }`
         })
         .then(() => {

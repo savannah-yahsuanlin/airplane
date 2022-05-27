@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import { loadProducts, filterProducts } from "../store";
+import { loadProducts, filterProducts, logout } from "../store";
 import { Link } from "react-router-dom";
 import ChatBot from "react-simple-chatbot";
 import { ThemeProvider } from "styled-components";
@@ -13,13 +14,9 @@ const theme = {
 };
 
 class Airlines extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: this.props.products,
-    };
-    this.onChange = this.onChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+  constructor() {
+    super();
+    this.onChange = this.onChange.bind(this)
   }
 
   componentDidMount() {
@@ -33,24 +30,25 @@ class Airlines extends Component {
     this.props.filterProducts(alliance, checked);
   };
 
-  handleSearch = (e) => {
-    let value = e.target.value;
-    let product = this.props.products.filter((product) => {
-      return (
-        !product.name.toLowerCase() || product.name.toLowerCase() === value
-      );
-    });
-    this.setState(product)
-    //this.props.loadProducts(product);
-  };
-
   render() {
-    const { products } = this.props;
-    const { onChange, handleSearch } = this;
+    const { products, search, match, history, handleClick, username, firstName } = this.props;
+    const { onChange } = this;
+    const searched = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+      search[name] = value;
+      history.push(search ? `/search/${JSON.stringify(search)}` : "/");
+    };
     return (
       <div>
         <div className="header">
           <img className="fly" src="./images/Fly.png" />
+          <div style={{marginRight:"20px"}}>
+            <a>Welcome, {username || firstName}</a>
+          </div>
+          <a className="logout" href="#" onClick={handleClick}>
+            Logout
+          </a>
         </div>
         <main>
           <h1>Airlines</h1>
@@ -63,11 +61,14 @@ class Airlines extends Component {
             <input type="checkbox" onChange={onChange} name="sa" value="SA" />
             <label>Star Alliance</label>
           </form>
-          <form>
+          <form autoComplete="on">
             <input
               type="text"
               name="name"
-              onChange={handleSearch}
+              value={match.params.name}
+              onChange={searched}
+              autoFocus={true}
+              autoComplete="on"
               placeholder="search ..."
             />
           </form>
@@ -84,38 +85,32 @@ class Airlines extends Component {
             </a>
           </div>
           <ul className="boxes">
-            {[
-              ...new Set(
-                products.map((product) => {
-                  return (
-                    <div className="box" key={product.id}>
-                      {product.isNew ? (
-                        <div className="badgeNew">new</div>
-                      ) : null}
-                      {product.isHotDeal ? (
-                        <div className="badgeHotDeal">Hot Deal</div>
-                      ) : null}
-                      {product.isEditorChoice ? (
-                        <div className="badgeEditorChoice">Editor Choice</div>
-                      ) : null}
-                      <div className="airplaneLogo">
-                        <img src={product.logoURL} />
-                      </div>
-                      <div className="content">
-                        <Link to={`/${product.id}`}>
-                          <p className="content-name">{product.name}</p>
-                        </Link>
-                        {/*<div className='content-inner'>
+            {products.map((product) => {
+              return (
+                <div className="box" key={product.id}>
+                  {product.isNew ? <div className="badgeNew">new</div> : null}
+                  {product.isHotDeal ? (
+                    <div className="badgeHotDeal">Hot Deal</div>
+                  ) : null}
+                  {product.isEditorChoice ? (
+                    <div className="badgeEditorChoice">Editor Choice</div>
+                  ) : null}
+                  <div className="airplaneLogo">
+                    <img src={product.logoURL} />
+                  </div>
+                  <div className="content">
+                    <Link to={`/${product.id}`}>
+                      <p className="content-name">{product.name}</p>
+                    </Link>
+                    {/*<div className='content-inner'>
 											{ product.alliance !=='none' ? <p className='alliance'>{product.alliance}</p> : ''}
 											<p className='phone'>{product.phone}</p>
 											<p className='site'>{product.site.split('www.')[1]}</p>
 										</div> */}
-                      </div>
-                    </div>
-                  );
-                })
-              ),
-            ]}
+                  </div>
+                </div>
+              );
+            })}
           </ul>
         </main>
         <div className="Chat">
@@ -175,10 +170,20 @@ class Airlines extends Component {
   }
 }
 
-const mapState = ({ products }, { match }) => {
+const mapState = ({ auth, products }, { match } ) => {
+  let search = match.params.search;
+  if (search) {
+    search = JSON.parse(search);
+  }
+  search = search || {};
+  products = products.filter((product) => {
+    return !search.name || search.name === product.name;
+  });
   return {
     products,
-    match,
+    search,
+    username: auth.username,
+    firstName: auth.firstName
   };
 };
 
@@ -190,7 +195,10 @@ const mapDispatch = (dispatch) => {
     filterProducts: (alliance, checked) => {
       dispatch(filterProducts(alliance, checked));
     },
+    handleClick() {
+      dispatch(logout())
+    }
   };
 };
 
-export default connect(mapState, mapDispatch)(Airlines);
+export default withRouter(connect(mapState, mapDispatch)(Airlines));

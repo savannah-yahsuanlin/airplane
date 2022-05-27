@@ -2,12 +2,34 @@
 require('dotenv').config()
 
 
-const {db, Product}=require("../server/db")
+const {db, Product, User}=require("../server/db")
 
 async function seed() {
 	await db.sync({ force: true})
 	console.log('db synced')
 	const url = process.env.SECRET_URL
+	//user create
+	const users = await Promise.all([
+		User.create({
+			username: "moe",
+			password: "123",
+			firstName: "moe",
+			lastName:"moe",
+			fullName: "moeMoe",
+			email: "moe@gmail.com"
+		}),
+		User.create({
+			username: "larry",
+			password: "123",
+			firstName: "larry",
+			lastName: "larry",
+			fullName: "larryLarry",
+			email: "larry@gmail.com"
+		})
+	])
+
+  console.log(`seeded ${users.length} users`)
+
 	//product create
 	const products = await Promise.all([
 		Product.create({
@@ -146,7 +168,11 @@ async function seed() {
 	
 
 	return {
-		products
+		products,
+		users: {
+      moe: users[0],
+      larry: users[1]
+    }
 	}
 }
 
@@ -165,7 +191,7 @@ async function runSeed() {
 }
 
 if(module === require.main) {
-	run.seed()
+	runSeed()
 }
 
 

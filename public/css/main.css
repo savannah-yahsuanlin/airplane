@@ -1,3 +1,49 @@
+.access-portal {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 138px);
+}
+.access-portal form {
+  border: 1px solid #000;
+  padding: 1rem;
+}
+.access-portal form * {
+  margin: 0.2rem auto;
+  width: 100%;
+}
+.access-portal-sub {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+.access-portal-divider {
+  position: relative;
+  text-align: center;
+  clear: both;
+}
+.access-portal-divider span {
+  display: inline;
+  position: relative;
+  top: 0.6em;
+  background-color: #f9fafb;
+  padding: 0 9px;
+  margin: 0;
+  color: #999;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+.access-portal-divider::after {
+  display: block;
+  border-bottom: 1px solid #ddd;
+  content: "";
+  width: 100%;
+  height: 0;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,6 +61,8 @@
 }
 
 body, html {
+  width: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -33,6 +81,8 @@ li {
 
 .header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   position: relative;
   background-color: #fff;
@@ -40,7 +90,10 @@ li {
 }
 .header .fly {
   width: 80px;
-  margin: 19px auto 19px 16px;
+  margin: 20px auto 20px 20px;
+}
+.header .logout {
+  margin-right: 20px;
 }
 
 main {

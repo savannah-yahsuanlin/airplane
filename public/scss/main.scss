@@ -1,3 +1,5 @@
+@import "authForm";
+
 $white: #fff;
 $border: #363f45;
 $second: #192024;
@@ -22,6 +24,8 @@ $gray: #5a6872;
 }
 
 body, html {
+	width: 100%;
+	height: auto;
 	margin: 0;
 	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
@@ -40,6 +44,8 @@ li {
 
 .header {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	position: relative;
 	background-color: $white;
@@ -47,7 +53,11 @@ li {
 
 	.fly {
 		width: 80px;
-		margin: 19px auto 19px 16px;
+		margin: 20px auto 20px 20px;
+	}
+
+	.logout {
+		margin-right: 20px;
 	}
 }
 
@@ -99,7 +109,7 @@ main {
 	}
 
 	label {
-        font-size: 14px;
+  	font-size: 14px;
 		margin-right: 24px;
 	}
 }
@@ -124,35 +134,34 @@ main {
     cursor: pointer;
 		
 		&-singular {
-				width: 600px;
-				height: 240px;
-				background-color: $white;
-				display: flex;
-				justify-content: space-evenly;
-				align-items: center;
-				position: relative;
-				border-radius: 8px;
-				box-shadow: 0 -1px 4px 0 rgba(25,32, 36, 0.4), 0 3px 6px 0 rgba(25,32,35, 0.16);
-				cursor: pointer;
+			width: 600px;
+			height: 240px;
+			background-color: $white;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			position: relative;
+			border-radius: 8px;
+			box-shadow: 0 -1px 4px 0 rgba(25,32, 36, 0.4), 0 3px 6px 0 rgba(25,32,35, 0.16);
+			cursor: pointer;
 		}
 	}
 }
 
 
 .content {
-    
-    max-width: 180px;
-    line-height: 1.2;
+  max-width: 180px;
+  line-height: 1.2;
 
 
     &-name {
-        font-weight: bold;
-        font-size: 16px;
-        color: $second;
+      font-weight: bold;
+      font-size: 16px;
+      color: $second;
     }
 
     .site {
-        color: $gray;
+      color: $gray;
     }
 }
 

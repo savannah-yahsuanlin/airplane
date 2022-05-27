@@ -9,6 +9,7 @@ const setUp = async () => {
       await seed();
     } else {
       await db.sync();
+     
     }
     const PORT = process.env.PORT || 6600;
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

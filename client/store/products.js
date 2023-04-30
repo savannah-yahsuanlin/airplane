@@ -3,7 +3,6 @@ import axios from "axios";
 // ACTION TYPES
 const LOAD_PRODUCTS = "LOAD_PRODUCTS";
 const FILTER_PRODUCTS = "FILTER_PRODUCTS";
-const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 
 // THUNK CREATORS
 export const loadProducts = () => {
@@ -33,16 +32,6 @@ export const filterProducts = (alliance, checked) => {
     }
   };
 };
-
-//export const searchProducts = (query) => {
-//  return async (dispatch) => {
-//    const product = (await axios.get(`/api/products/${query}`)).data;
-//    dispatch({
-//      type: SEARCH_PRODUCTS,
-//      product,
-//    });
-//  };
-//};
 
 // REDUCER
 export default function(state = [], action) {

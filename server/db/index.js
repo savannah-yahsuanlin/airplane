@@ -1,26 +1,16 @@
 const {
   Sequelize,
   STRING,
-  BOOLEAN,
   INTEGER,
   DECIMAL,
   ENUM,
 } = require("sequelize");
-const pkg = require("../../package.json");
-const pkgName = pkg.name;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const SALT_ROUNDS = 5;
 
-const config = {
-  logging: false,
-};
-
-const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://localhost/${pkgName}`,
-  config
-);
+const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/stackathon');
 
 if (process.env.LOGGING === "true") delete config.logging;
 
@@ -69,17 +59,7 @@ const Product = db.define("product", {
   },
 
   alliance: {
-    type: ENUM(["OW", "SA", "ST"]),
-    allowNull: true,
-  },
-
-  phone: {
-    type: STRING,
-    allowNull: true,
-  },
-
-  site: {
-    type: STRING,
+    type: ENUM(["OW", "SA", "ST", "none"]),
     allowNull: true,
   },
 
@@ -99,20 +79,20 @@ const Product = db.define("product", {
     defaultValue: 0,
   },
 
-  isNew: {
-    type: BOOLEAN,
-    defaultValue: false,
-  },
+  //isNew: {
+  //  type: BOOLEAN,
+  //  defaultValue: false,
+  //},
 
-  isHotDeal: {
-    type: BOOLEAN,
-    defaultValue: false,
-  },
+  //isHotDeal: {
+  //  type: BOOLEAN,
+  //  defaultValue: false,
+  //},
 
-  isEditorChoice: {
-    type: BOOLEAN,
-    defaultValue: false,
-  },
+  //isEditorChoice: {
+  //  type: BOOLEAN,
+  //  defaultValue: false,
+  //},
 });
 
 const WishList = db.define("wishlist", {

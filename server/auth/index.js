@@ -45,7 +45,7 @@ router.get(
         </body>
       </html>
     `
-  );
+  );s
   }
 );
 

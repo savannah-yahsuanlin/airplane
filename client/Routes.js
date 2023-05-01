@@ -5,7 +5,7 @@ import Airlines from "./components/Airlines";
 import Airline from "./components/Airline";
 import { Login } from "./components/AuthForm";
 import { loadProducts, filterProducts, me } from "./store";
-//import Home from './components/Home';
+import Signup from "./components/Signup";
 
 class Routes extends Component {
 
@@ -17,20 +17,18 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn} = this.props;
-    const token = window.localStorage.getItem("token");
     return (
       <div>
         {isLoggedIn ? (
           <Switch>
-            {/*<Route path="/home" component={Home} />*/}
             <Route exact path="/" component={Airlines} />
             <Route exact path="/:id" component={Airline} />
             <Route path="/search/:search" component={Airlines} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
           </Switch>
         )}
 

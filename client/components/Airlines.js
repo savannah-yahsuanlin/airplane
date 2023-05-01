@@ -32,6 +32,10 @@ class Airlines extends Component {
     const indexOfLast = page * amountPerPage;
     const indexOfFirst = indexOfLast - amountPerPage;
     const currentProducts = products.slice(indexOfFirst, indexOfLast);
+    const pages = []
+    for (let i = 1; i <= Math.ceil(products.length / amountPerPage); i++) {
+      pages.push(i);
+    }
     const searched = (e) => {
       const name = e.target.name;
       const value = e.target.value;

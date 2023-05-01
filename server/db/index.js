@@ -86,14 +86,6 @@ const Product = db.define("product", {
   },
 });
 
-const WishList = db.define("wishlist", {
-  list: {
-    type: INTEGER,
-    defaultValue: 0,
-  },
-});
-
-Product.hasMany(WishList);
 User.hasMany(Product);
 
 User.prototype.correctPassword = function(candidatePwd) {
@@ -129,16 +121,10 @@ User.findByToken = async function(token) {
   }
 };
 
-
-User.authenticateViaSocial = async function (passportId) {
-  const user = await this.findOne({ where: { passportId } });
-  if (!user) {
-    const error = Error("No user exists");
-    error.status = 401;
-    throw error;
-  }
+User.register = async function({username, password}) {
+  const user = await this.create({username, password});
   return user.generateToken();
-};
+}
 
 const hashPassword = async (user) => {
   if (user.changed("password")) {
@@ -153,6 +139,5 @@ User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
 module.exports = {
   db,
   Product,
-  WishList,
   User,
 };

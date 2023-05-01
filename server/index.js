@@ -1,4 +1,3 @@
-const db = require("./db");
 const app = require("./app");
 
 const seed = require("../script/seed");

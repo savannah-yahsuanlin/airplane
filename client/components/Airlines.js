@@ -83,13 +83,13 @@ class Airlines extends Component {
             {currentProducts.map((product) => {
               return (
                 <div className="box" key={product.id}>
-                  {/*{product.isNew ? <div className="badgeNew">new</div> : null}
+                  {product.isNew ? <div className="badgeNew">new</div> : null}
                   {product.isHotDeal ? (
                     <div className="badgeHotDeal">Hot Deal</div>
                   ) : null}
                   {product.isEditorChoice ? (
                     <div className="badgeEditorChoice">Editor Choice</div>
-                  ) : null}*/}
+                  ) : null}
                   <div className="airplaneLogo">
                     <img src={product.logoURL} />
                   </div>

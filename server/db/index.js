@@ -1,5 +1,6 @@
 const {
   Sequelize,
+  BOOLEAN,
   STRING,
   INTEGER,
   DECIMAL,
@@ -79,20 +80,10 @@ const Product = db.define("product", {
     defaultValue: 0,
   },
 
-  //isNew: {
-  //  type: BOOLEAN,
-  //  defaultValue: false,
-  //},
-
-  //isHotDeal: {
-  //  type: BOOLEAN,
-  //  defaultValue: false,
-  //},
-
-  //isEditorChoice: {
-  //  type: BOOLEAN,
-  //  defaultValue: false,
-  //},
+  isEditorChoice: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 const WishList = db.define("wishlist", {

@@ -7,6 +7,7 @@ async function seed() {
 	await db.sync({ force: true})
 	console.log('db synced')
 	const url = process.env.SECRET_URL
+
 	//user create
 
 
@@ -30,14 +31,17 @@ async function seed() {
 	])
 
   console.log(`seeded ${users.length} users`)
+
 		let products = []
+
 		data.map( async( i )=> {
 			products = Product.create({
 				name: i.name,
 				alliance: i.alliance,
 				price: Math.floor(Math.random()*100),
 				seat: Math.floor(Math.random()*10),
-				logoURL: url + i.logoURL
+				logoURL: url + i.logoURL,
+				isEditorChoice: Math.random() < 0.1 ? true : false,
 			})
 		})
 

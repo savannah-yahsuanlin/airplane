@@ -30,7 +30,7 @@ module.exports = function(passport) {
           });
           done(null, user);
 				}
-				catch {	
+				catch(error) {	
 					console.error(error);
 				}
 			}

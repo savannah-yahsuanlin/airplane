@@ -1,37 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ShareIcon from "@material-ui/icons/share";
-import IconButton from "@material-ui/core/IconButton";
+
 
 class Airline extends Component {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = () => {
-    if (navigator.canShare) {
-      console.log("Congrats! Your browser supports Web Share API");
-      navigator
-        .share({
-					subject: 'Fly with Fly',
-					text: 'This is hot deal and do not miss it!!' + 'Travel with Fly and Savannah',
-					url: `fly.com/${this.props.product.id }`
-        })
-        .then(() => {
-          console.log("Successfully shared");
-        })
-        .catch((error) => {
-         		console.log("Error while using Web share API:");
-            console.log(error);
-        });
-    } else {
-      console.log("Sorry! Your browser does not support Web Share API");
-    }
-  };
   render() {
     const { product } = this.props;
-    const { handleClick } = this;
     if (!product) return null;
 
     return (
@@ -62,9 +39,6 @@ class Airline extends Component {
               <b>{product.seat}</b>
             </div>
           </div>
-          <IconButton id="shareButton" onClick={() => handleClick()}>
-            <ShareIcon />
-          </IconButton>
         </div>
       </div>
     );

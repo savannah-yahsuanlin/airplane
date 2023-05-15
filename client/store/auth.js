@@ -28,6 +28,7 @@ export const authenticate =
       });
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
+      history.push('/')
     } catch (authError) {
       return dispatch(setAuth({ error: authError }));
     }
@@ -41,6 +42,16 @@ export const logout = () => {
     auth: {},
   };
 };
+
+export const register = ({username, password}) => {
+  return async dispatch => {
+    const res = await axios.post(`/auth/register`, {username, password});
+    const token = res.data.token;
+    window.localStorage.setItem(TOKEN, token);
+    dispatch({type: SET_AUTH, auth: res.data});
+    history.push("/login");
+  }
+}
 
 
 export default function (state = {}, action) {

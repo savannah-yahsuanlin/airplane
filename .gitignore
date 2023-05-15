@@ -1,9 +1,9 @@
 node_modules
-.git
+.gits
 public/bundle.js
 public/bundle.js.map
 .DS_Store
 package-lock.json
 .sass-cache
 .env
-script/data.js
+public/data.js
